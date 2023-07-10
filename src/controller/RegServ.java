@@ -33,8 +33,9 @@ public class RegServ extends HttpServlet {
 
 		try {
 			if (upass.equals(upass1)) {
+				
 				int a = new EmpDao().save(e);
-
+                
 				if (a > 0) {
 					out.println("<html>");
 					out.println("<head>");
