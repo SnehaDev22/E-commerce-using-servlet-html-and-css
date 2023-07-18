@@ -3,8 +3,9 @@ package model;
 
 
 public class AddItem {
-	
-    private String name;
+	 private int id;
+   
+	private String name;
     private int qty;
     private double price;
     private double total;
@@ -12,6 +13,14 @@ public class AddItem {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	 public AddItem(int id, String name, int qty, double price, double total) {
+			super();
+			this.id = id;
+			this.name = name;
+			this.qty = qty;
+			this.price = price;
+			this.total = total;
+		}
 	public AddItem(String name, int qty, double price,double total) {
 		super();
 		this.name = name;
@@ -25,6 +34,12 @@ public class AddItem {
 		this.name = name;
 		this.qty = qty;
 		this.price = price;
+	}
+	
+	public AddItem(String name, int qty) {
+		super();
+		this.name = name;
+		this.qty = qty;
 	}
 	public String getName() {
 		return name;
@@ -49,6 +64,12 @@ public class AddItem {
 	}
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 
     

@@ -10,9 +10,11 @@ import java.sql.SQLException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Emp;
 import model.EmpDao;
@@ -37,7 +39,12 @@ public class RegServ extends HttpServlet {
 				int a = new EmpDao().save(e);
                 
 				if (a > 0) {
-					out.println("<html>");
+//					 Cookie cook = new Cookie("email", email);
+//					 cook.setMaxAge(24 * 60 * 60); // Set cookie expiration time to 24 hours
+//	                    response.addCookie(cook);
+					 HttpSession session = request.getSession(true);
+					 session.setAttribute("email", email);
+					 out.println("<html>");
 					out.println("<head>");
 					out.println("<style>");
 					out.println(".center {");
@@ -47,7 +54,7 @@ public class RegServ extends HttpServlet {
 					out.println("    top: 20%;");
 					out.println("    left: 50%;");
 					out.println("    transform: translate(-50%, -50%);");
-					out.println("}");
+					out.println("font-weight: bold; font-size: 18px;}");
 					out.println("</style>");
 					out.println("</head>");
 					out.println("<body>");
@@ -73,7 +80,7 @@ public class RegServ extends HttpServlet {
 				out.println("    top: 20%;");
 				out.println("    left: 50%;");
 				out.println("    transform: translate(-50%, -50%);");
-				out.println("}");
+				out.println("font-weight: bold; font-size: 18px;}");
 				out.println("</style>");
 				out.println("</head>");
 				out.println("<body>");

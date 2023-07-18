@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,14 +16,15 @@ import javax.servlet.http.HttpServletResponse;
 import model.AddDao;
 import model.AddItem;
 
-@WebServlet("/cart1")
-public class CartItem extends HttpServlet {
+@WebServlet("/propay")
+public class ProPayment extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+		double bill = 0.0;
 
 		AddDao d = new AddDao();
 		try {
@@ -85,16 +87,11 @@ public class CartItem extends HttpServlet {
 			out.print("            <div class='collapse navbar-collapse' id='ftco-nav'>");
 			out.print("                <ul class='navbar-nav ml-auto'>");
 			out.print("                    <li class='nav-item'><a href='index.html' class='nav-link'>Home</a></li>");
-			
-			
+
 			out.print("                    <li class='nav-item'><a href='shop.html' class='nav-link'>Shop</a></li>");
-
-			
-
+	        out.print("                    <li class='nav-item'><a href='logout' class='nav-link'>Logout");
 			out.print(
 					"                    <li class='nav-item cta cta-colored'><a href='cart1' class='nav-link'><span class='icon-shopping_cart'></span>[0]</a></li>");
-	        out.print("                    <li class='nav-item'><a href='logout' class='nav-link'>Logout");
-
 			out.print("                </ul>");
 			out.print("            </div>");
 			out.print("        </div>");
@@ -103,8 +100,8 @@ public class CartItem extends HttpServlet {
 			out.print("        <div class='container'>");
 			out.print("            <div class='row no-gutters slider-text align-items-center justify-content-center'>");
 			out.print("                <div class='col-md-9 ftco-animate text-center'>");
-			out.print("<span></span></p>");
-			out.print("                    <h1 class='mb-0 bread'>My Cart</h1>");
+
+			out.print("                    <h1 class='mb-0 bread'>Payment</h1>");
 			out.print("                </div>");
 			out.print("            </div>");
 			out.print("        </div>");
@@ -138,7 +135,8 @@ public class CartItem extends HttpServlet {
 			for (AddItem ad1 : ad) {
 				out.print("                                <tr class='text-center'>");
 				out.print("                                    <td class='product-remove'>");
-				out.print("<a href='delete1?id=" + ad1.getId() + "' onclick='return confirmDelete()' class='delete'><span class='ion-ios-close'></span></a>");
+				out.print("<a href='delete1?id=" + ad1.getId()
+						+ "' onclick='return confirmDelete()' class='delete'><span class='ion-ios-close'></span></a>");
 
 				out.print("                                    </td>");
 				out.print("                                    <td class='product-name'>");
@@ -149,7 +147,7 @@ public class CartItem extends HttpServlet {
 				out.print("                                        <div class='input-group mb-3'>");
 				out.print(
 						"                                            <input type='text' class='quantity form-control input-number' value='"
-								+ ad1.getQty() + "' min='1' max='1000'>");
+								+ ad1.getQty() + "' min='1' max='100'>");
 				out.print("                                        </div>");
 				out.print("                                    </td>");
 				out.print("                                    <td class='total'>Rs." + (ad1.getPrice() * ad1.getQty())
@@ -163,19 +161,75 @@ public class CartItem extends HttpServlet {
 			out.print("            </div>");
 			out.print("        </div>");
 			out.print("    </section>");
-			
 
+			//////////////////////////// bill////////////////////////////////////////////////
+
+			out.print("                            <tbody id='cart-items'>");
+
+			for (AddItem ad1 : ad) {
+				out.print("                                <tr class='text-center'>");
+				// ...
+				double itemTotal = ad1.getPrice() * ad1.getQty(); // Calculate
+																	// the total
+//				request.setAttribute("tbill", bill);													// for the
+//				response.sendRedirect("cardpay");													// current
+																	// item
+				bill += itemTotal; // Add the item's total to the overall total
+									// i,e bill
+				
+			
+				
+				
+				
+			} // important bracket
+			
+//			request.setAttribute("tbill", bill);													// for the
+//			 request.getRequestDispatcher("cardpay").forward(request, response);
+			out.print("                            </tbody>");
+
+			// Display the total bill
+			out.println("<style>");
+			out.println(".text-box {");
+			out.println("    width: 150px;");
+			out.println("    height: 80px;");
+			out.println("    border: 1px solid #ccc;");
+			out.println("    padding: 10px;");
+			out.println("}");
+			out.println(".bill {");
+			out.println("    color: red;");
+			out.println("    font-weight: bold;");
+			out.println("}");
+			out.println(".text-right {");
+			out.println("    text-align: right;");
+			out.println("}");
+			out.println("</style>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<div class='text-box'>");
+			out.println("<table>");
+			out.println("    <tfoot class='tfoot-primary'>");
+			out.println("        <tr class='text-center'>");
+			out.println("            <td colspan='4' class='text-right'>Total</td>");
+			out.println("        </tr>");
+			out.println("        <tr class='text-center'>");
+			out.println(
+					"            <td colspan='4' class='text-right'><span class='bill'>Rs. " + bill + "</span></td>");
+			out.println("        </tr>");
+			out.println("    </tfoot>");
+			out.println("</table>");
+			out.println("</div>");
+
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////
 			out.println("<style>");
 			out.println(".text-right { text-align: right; }");
-			out.println(".btn { display: inline-block; padding-left: 10px; }"); // Adjust the padding as per your requirement
+			out.println(".btn { display: inline-block; padding-left: 10px; }");
 			out.println("</style>");
 
 			out.println("<div class='text-right'>");
-			out.println("<form action='propay'>");
-			out.println("<input type='submit' value='Bill' class='btn btn-primary py-3 px-5'>");
+			out.println("<form action='cardpay' method='post'>");
+			out.println("<input type='submit' value='Proceed to pay' class='btn btn-primary py-3 px-5'>");
 			out.println("</form>");
 			out.println("</div>");
-
 
 			out.print("    <script src='js/jquery.min.js'></script>");
 			out.print("    <script src='js/jquery-migrate-3.0.1.min.js'></script>");
@@ -193,12 +247,17 @@ public class CartItem extends HttpServlet {
 			out.print("    <script src='js/scrollax.min.js'></script>");
 			out.print("    <script src='js/main.js'></script>");
 			out.print("    <script>");
-	        out.print("        function confirmDelete() {");
-	        out.print("            return confirm('Are you sure you want to delete this item?');");
-	        out.print("        }");
-	        out.print("    </script>");
+			out.print("        function confirmDelete() {");
+			out.print("            return confirm('Are you sure you want to delete this item?');");
+			out.print("        }");
+			out.print("    </script>");
 			out.print("</body>");
 			out.print("</html>");
+		/*	request.setAttribute("totalBill", bill);
+
+		    // Forward the request to the next servlet
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("cardpay"); // Replace "nextservlet" with the actual URL pattern of the next servlet
+		    dispatcher.forward(request, response);*/
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
@@ -210,9 +269,3 @@ public class CartItem extends HttpServlet {
 		doGet(request, response);
 	}
 }
-
-
-
-
-
-

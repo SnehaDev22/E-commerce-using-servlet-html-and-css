@@ -24,44 +24,83 @@ public class AddItemServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         String name = request.getParameter("name");
-        int qty=Integer.parseInt(request.getParameter("qty"));
-        double price = Double.parseDouble(request.getParameter("price"));
-        //double total=price*qty;
-       //  total=Double.parseDouble(request.getParameter("total"));
-        
-       // AddItem a = new AddItem(name, qty, price,total);
+        String qtyParam = request.getParameter("qty");
+        String priceParam = request.getParameter("price");
+
+        if (qtyParam.isEmpty() || priceParam.isEmpty()) {
+            out.print("<p style='color: red; margin-top: 30px; text-align: center; font-weight: bold; font-size: 18px;'>Invalid quantity or price</p>");
+            RequestDispatcher rd = request.getRequestDispatcher("shop.html");
+            rd.include(request, response);
+            return; // Exit the method to prevent further execution
+        }
+
+        int qty;
+        double price;
+
+        try {
+            qty = Integer.parseInt(qtyParam);
+            price = Double.parseDouble(priceParam);
+        } catch (NumberFormatException e) {
+            out.print("<p style='color: red; margin-top: 30px; text-align: center; font-weight: bold; font-size: 18px;'>Invalid quantity or price format</p>");
+            RequestDispatcher rd = request.getRequestDispatcher("shop.html");
+            rd.include(request, response);
+            return; // Exit the method to prevent further execution
+        }
+      
         AddItem a = new AddItem(name, qty, price);
+       
         int b = 0;
         try {
             b = new AddDao().save(a);
         } catch (ClassNotFoundException | SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        
         if (b > 0) {
-            out.print("<p style=\"color: red; margin-top: 30px;text-align: center;\">Item added successfully</p>");
+        	out.println("<html>");
+			out.println("<head>");
+			out.println("<style>");
+			out.println(".center {");
+			out.println("    text-align: center;");
+			out.println("    color: red;");
+			out.println("    position: absolute;");
+			out.println("    top: 20%;");
+			out.println("    left: 50%;");
+			out.println("    transform: translate(-50%, -50%);");
+			out.println("font-weight: bold; font-size: 18px;}");
+			out.println("</style>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<div class='center'>Item added Successful!</div>");
+			out.println("</body>");
+			out.println("</html>");
             RequestDispatcher rd = request.getRequestDispatcher("shop.html");
             rd.include(request, response);
         } else {
-            out.print("<p style=\"color: red; margin-top: 30px; text-align: center;\">Failed to add item</p>");
+        	out.println("<html>");
+			out.println("<head>");
+			out.println("<style>");
+			out.println(".center {");
+			out.println("    text-align: center;");
+			out.println("    color: red;");
+			out.println("    position: absolute;");
+			out.println("    top: 20%;");
+			out.println("    left: 50%;");
+			out.println("    transform: translate(-50%, -50%);");
+			out.println("font-weight: bold; font-size: 18px;}");
+			out.println("</style>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<div class='center'>Failed to add the item..</div>");
+			out.println("</body>");
+			out.println("</html>");
             RequestDispatcher rd = request.getRequestDispatcher("shop.html");
             rd.include(request, response);
         }
-
-        // Generate a response
-        
-        /* * response.setContentType("text/html");
-         * 
-         * out.println("<html><body>"); out.println("<h1>Item Added</h1>");
-         * out.println("<p>Item Name: " + name + "</p>");
-         * out.println("<p>Price: " + price + "</p>");
-         * out.println("</body> </html>");*/
-         
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Retrieve the form data
         doGet(request, response);
     }
 }

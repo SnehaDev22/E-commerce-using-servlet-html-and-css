@@ -17,6 +17,7 @@ import model.EmpDao;
 public class LogIn extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		String email = request.getParameter("email");
@@ -37,7 +38,7 @@ public class LogIn extends HttpServlet {
 				out.println("    top: 20%;");
 				out.println("    left: 50%;");
 				out.println("    transform: translate(-50%, -50%);");
-				out.println("}");
+				out.println("font-weight: bold; font-size: 18px;}");
 				out.println("</style>");
 				out.println("</head>");
 				out.println("<body>");
@@ -60,7 +61,7 @@ public class LogIn extends HttpServlet {
 				out.println("    top: 20%;");
 				out.println("    left: 50%;");
 				out.println("    transform: translate(-50%, -50%);");
-				out.println("}");
+				out.println("font-weight: bold; font-size: 18px;}");
 				out.println("</style>");
 				out.println("</head>");
 				out.println("<body>");
