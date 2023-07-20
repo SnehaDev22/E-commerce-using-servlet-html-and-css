@@ -28,10 +28,13 @@ public class AddItemServlet extends HttpServlet {
         String priceParam = request.getParameter("price");
 
         if (qtyParam.isEmpty() || priceParam.isEmpty()) {
-            out.print("<p style='color: red; margin-top: 30px; text-align: center; font-weight: bold; font-size: 18px;'>Invalid quantity or price</p>");
+           
+        	out.print("<p style='color: red; margin-top: 30px; text-align: center; font-weight: bold; font-size: 18px;'>Invalid quantity or price</p>");
             RequestDispatcher rd = request.getRequestDispatcher("shop.html");
             rd.include(request, response);
-            return; // Exit the method to prevent further execution
+            return; 
+            
+            
         }
 
         int qty;
@@ -71,7 +74,7 @@ public class AddItemServlet extends HttpServlet {
 			out.println("</style>");
 			out.println("</head>");
 			out.println("<body>");
-			out.println("<div class='center'>Item added Successful!</div>");
+			out.println("<div class='center'>Item added Successfully...!</div>");
 			out.println("</body>");
 			out.println("</html>");
             RequestDispatcher rd = request.getRequestDispatcher("shop.html");

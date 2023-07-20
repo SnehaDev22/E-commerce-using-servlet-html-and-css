@@ -16,8 +16,15 @@ public class Cardpay extends HttpServlet {
 //        
         
         
+        String email = (String) request.getSession().getAttribute("email");
+        System.out.println("cust name: "+email);
         
-        
+       
+         if (email == null) {
+             // Redirect the user to the login page or display an error message
+             response.sendRedirect("login.html"); // Replace "login.html" with your login page URL
+             return;
+         }
         
       //  double bill = (double) request.getAttribute("tbill");
          out.print("<!DOCTYPE html>");
@@ -101,24 +108,40 @@ public class Cardpay extends HttpServlet {
         out.print("");
         out.print("   ");
         out.print("");
-        out.print("<head>");
-        out.print("  <style>");
-        out.print("    .center-container {");
-        out.print("      display: flex;");
-        out.print("      justify-content: center;");
-        out.print("      align-items: center;");
-        out.print("      height: 60vh;");
-        out.print("    }");
-        out.print("  </style>");
-        out.print("</head>");
-        out.print("<body>");
+        out.print("    <style>");
+        out.print("      .greeting {");
+        out.print("        text-align: center;");
+        out.print("        font-size: 18px;");
+        out.print("        color: #333;");
+        out.print("        margin-top: 20px;");
+        out.print("      }");
+        out.print("    </style>");
+        out.print("  </head>");
+        out.print("  <body class='goto-here'>");
+        out.print("    <div class='greeting'>"); // Opening div for the greeting message
+        out.print("      <h5>Hello " + email + ",</h5>"); // Display the greeting message with email
+        out.print("    </div>");
+        // Moved the <h3> tag here to display the greeting message
+        out.print("    <style>");
+        out.print("      .center-container {");
+        out.print("        display: flex;");
+        out.print("        justify-content: center;");
+        out.print("        align-items: center;");
+        out.print("        height: 80vh;"); // Adjust the height to your preference
+        out.print("      }");
+        out.print("    </style>");
+
         out.print("  <div class='center-container'>");
         out.print("    <div class='row block-12'>");
         out.print("      <div class='col-md-20 d-flex'>");
+
         out.print("        <form action='deleteAllItems' class='bg-white px-5 contact-form' method='post'>");
-        out.print("          <h1 style='text-align: center;'>Card Details</h1>");
-        out.print("");
+        out.print("          <h3 style='text-align: center;'>Card Details</h3>");
+
+
+
      //   out.print("<h1>Total Bill: " + bill + "</h1>");
+      
         out.print("          <div class='form-group'>");
         out.print("           Card holder Name: <input type='text' class='form-control' name='cname' placeholder='Card holder name' required>");
         out.print("          </div>");

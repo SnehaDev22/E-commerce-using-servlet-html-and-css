@@ -39,11 +39,10 @@ public class RegServ extends HttpServlet {
 				int a = new EmpDao().save(e);
                 
 				if (a > 0) {
-//					 Cookie cook = new Cookie("email", email);
-//					 cook.setMaxAge(24 * 60 * 60); // Set cookie expiration time to 24 hours
-//	                    response.addCookie(cook);
+//					 
 					 HttpSession session = request.getSession(true);
 					 session.setAttribute("email", email);
+					
 					 out.println("<html>");
 					out.println("<head>");
 					out.println("<style>");

@@ -31,14 +31,45 @@ public class DeleteAllItems extends HttpServlet {
 		
           
 		if(c>0){
-			//out.print("deleted all");
-			   out.print("<p style='color: red; margin-top: 30px; text-align: center; font-weight: bold; font-size: 18px;'>Payment successfull</p>");
-			 request.getRequestDispatcher("cardpay").forward(request, response);   
+			//out.print("deleted all");out.println("<html>");
+			out.println("<head>");
+			out.println("<style>");
+			out.println(".center {");
+			out.println("    text-align: center;");
+			out.println("    color: red;");
+			out.println("    position: absolute;");
+			out.println("    top: 10%;");
+			out.println("    left: 50%;");
+			out.println("    transform: translate(-50%, -50%);");
+			out.println("font-weight: bold; font-size: 18px;}");
+			out.println("</style>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<div class='center'>Payment successfull...!</div>");
+			out.println("</body>");
+			out.println("</html>");
+			 request.getRequestDispatcher("cardpay").include(request, response);   
            }
 		else{
+			
 			//out.print("not deleted all");
-			   out.print("<p style='color: red; margin-top: 30px; text-align: center; font-weight: bold; font-size: 18px;'>Payment failed</p>");
-			request.getRequestDispatcher("cardpay").forward(request, response); 
+			out.println("<head>");
+			out.println("<style>");
+			out.println(".center {");
+			out.println("    text-align: center;");
+			out.println("    color: red;");
+			out.println("    position: absolute;");
+			out.println("    top: 10%;");
+			out.println("    left: 50%;");
+			out.println("    transform: translate(-50%, -50%);");
+			out.println("font-weight: bold; font-size: 18px;}");
+			out.println("</style>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<div class='center'>Payment failed...!</div>");
+			out.println("</body>");
+			out.println("</html>");
+			request.getRequestDispatcher("cardpay").include(request, response); 
 		}
 		
         

@@ -91,11 +91,11 @@ public class CartItem extends HttpServlet {
 
 			
 
-			out.print(
-					"                    <li class='nav-item cta cta-colored'><a href='cart1' class='nav-link'><span class='icon-shopping_cart'></span>[0]</a></li>");
-	        out.print("                    <li class='nav-item'><a href='logout' class='nav-link'>Logout");
+			out.print("<li class='nav-item cta cta-colored'><a href='cart1' class='nav-link'><span class='icon-shopping_cart'></span>[0]</a></li>");
+	        out.print(" <li class='nav-item'><a href='logout' class='nav-link'>Logout</a></li>");
 
 			out.print("                </ul>");
+
 			out.print("            </div>");
 			out.print("        </div>");
 			out.print("    </nav>");

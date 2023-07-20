@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Emp;
 import model.EmpDao;
@@ -45,6 +46,11 @@ public class LogIn extends HttpServlet {
 				out.println("<div class='center'>User Verified. Login Successful!</div>");
 				out.println("</body>");
 				out.println("</html>");
+	           
+				HttpSession session = request.getSession(true);///
+	            session.setAttribute("email", email);///
+	            session.setAttribute("upass", upass);///
+
 				RequestDispatcher rd = request.getRequestDispatcher("shop.html");
 				rd.include(request, response);
 
@@ -71,7 +77,7 @@ public class LogIn extends HttpServlet {
 
 				RequestDispatcher rd = request.getRequestDispatcher("login.html");
 				rd.include(request, response);
-			}
+			} 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

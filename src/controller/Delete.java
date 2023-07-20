@@ -32,12 +32,42 @@ public class Delete extends HttpServlet {
 		        }
 
 		        if (b > 0) {
-		            out.print("<p style=\"color: red; margin-top: 30px;text-align: center;font-weight: bold; font-size: 18px;\">Item deleted successfully</p>");
-		            RequestDispatcher rd = request.getRequestDispatcher("cart1");
+		        	out.println("<html>");
+					out.println("<head>");
+					out.println("<style>");
+					out.println(".center {");
+					out.println("    text-align: center;");
+					out.println("    color: red;");
+					out.println("    position: absolute;");
+					out.println("    top: 10%;");
+					out.println("    left: 50%;");
+					out.println("    transform: translate(-50%, -50%);");
+					out.println("font-weight: bold; font-size: 18px;}");
+					out.println("</style>");
+					out.println("</head>");
+					out.println("<body>");
+					out.println("<div class='center'>Item deleted Successfully..!</div>");
+					out.println("</body>");
+					out.println("</html>");		            RequestDispatcher rd = request.getRequestDispatcher("cart1");
 		            rd.include(request, response);
 		        } else {
-		            out.print("<p style=\"color: red; margin-top: 30px; text-align: center;font-weight: bold; font-size: 18px;\">Failed to delete item</p>");
-		            RequestDispatcher rd = request.getRequestDispatcher("cart1");
+		        	out.println("<html>");
+					out.println("<head>");
+					out.println("<style>");
+					out.println(".center {");
+					out.println("    text-align: center;");
+					out.println("    color: red;");
+					out.println("    position: absolute;");
+					out.println("    top: 10%;");
+					out.println("    left: 50%;");
+					out.println("    transform: translate(-50%, -50%);");
+					out.println("font-weight: bold; font-size: 18px;}");
+					out.println("</style>");
+					out.println("</head>");
+					out.println("<body>");
+					out.println("<div class='center'>Item deleted!</div>");
+					out.println("</body>");
+					out.println("</html>");		            RequestDispatcher rd = request.getRequestDispatcher("cart1");
 		            rd.include(request, response); 
 		        }
 	        	
