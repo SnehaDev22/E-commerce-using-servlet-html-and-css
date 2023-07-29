@@ -29,20 +29,21 @@ public class LogIn extends HttpServlet {
 			boolean verified = new EmpDao().verifyUser(e);
 
 			if (verified) {
-				out.println("<html>");
-				out.println("<head>");
-				out.println("<style>");
-				out.println(".center {");
-				out.println("    text-align: center;");
-				out.println("    color: red;");
-				out.println("    position: absolute;");
-				out.println("    top: 20%;");
-				out.println("    left: 50%;");
-				out.println("    transform: translate(-50%, -50%);");
-				out.println("font-weight: bold; font-size: 18px;}");
-				out.println("</style>");
-				out.println("</head>");
-				out.println("<body>");
+				 out.println("<html>");
+			        out.println("<head>");
+			        out.println("<style>");
+			        out.println(".center {");
+			        out.println("    text-align: center;");
+			        out.println("    color: red;");
+			        out.println("    position: absolute;");
+			        out.println("    top: 9%;");
+			        out.println("    left: 50%;");
+			        out.println("    transform: translate(-50%, -50%);");
+			        out.println("    font-weight: bold; font-size: 18px;");
+			        out.println("}");
+			        out.println("</style>");
+			        out.println("</head>");
+			        out.println("<body>");
 				out.println("<div class='center'>User Verified. Login Successful!</div>");
 				out.println("</body>");
 				out.println("</html>");
@@ -57,20 +58,21 @@ public class LogIn extends HttpServlet {
 				// Perform further actions after successful login
 
 			} else {
-				out.println("<html>");
-				out.println("<head>");
-				out.println("<style>");
-				out.println(".center {");
-				out.println("    text-align: center;");
-				out.println("    color: red;");
-				out.println("    position: absolute;");
-				out.println("    top: 20%;");
-				out.println("    left: 50%;");
-				out.println("    transform: translate(-50%, -50%);");
-				out.println("font-weight: bold; font-size: 18px;}");
-				out.println("</style>");
-				out.println("</head>");
-				out.println("<body>");
+				 out.println("<html>");
+			        out.println("<head>");
+			        out.println("<style>");
+			        out.println(".center {");
+			        out.println("    text-align: center;");
+			        out.println("    color: red;");
+			        out.println("    position: absolute;");
+			        out.println("    top: 9%;");
+			        out.println("    left: 50%;");
+			        out.println("    transform: translate(-50%, -50%);");
+			        out.println("    font-weight: bold; font-size: 18px;");
+			        out.println("}");
+			        out.println("</style>");
+			        out.println("</head>");
+			        out.println("<body>");
 				out.println("<div class='center'>Invalid username or password. Login failed!</div>");
 				out.println("</body>");
 				out.println("</html>");

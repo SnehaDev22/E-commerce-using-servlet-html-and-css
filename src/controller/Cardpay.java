@@ -1,6 +1,8 @@
 package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,12 +21,53 @@ public class Cardpay extends HttpServlet {
         String email = (String) request.getSession().getAttribute("email");
         System.out.println("cust name: "+email);
         
+        
        
-         if (email == null) {
-             // Redirect the user to the login page or display an error message
+       
+         //Object bill = null;
+		if (email == null) {
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<style>");
+			out.println(".center {");
+			out.println("    text-align: center;");
+			out.println("    color: red;");
+			out.println("    position: absolute;");
+			out.println("    top: 10%;");
+			out.println("    left: 50%;");
+			out.println("    transform: translate(-50%, -50%);");
+			out.println("font-weight: bold; font-size: 18px;}");
+			out.println("</style>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<div class='center'>Please login to complete purchase </div>");
+			out.println("</body>");
+			out.println("</html>");
              response.sendRedirect("login.html"); // Replace "login.html" with your login page URL
              return;
          }
+		/*if (bill == null) {
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<style>");
+			out.println(".center {");
+			out.println("    text-align: center;");
+			out.println("    color: red;");
+			out.println("    position: absolute;");
+			out.println("    top: 10%;");
+			out.println("    left: 50%;");
+			out.println("    transform: translate(-50%, -50%);");
+			out.println("font-weight: bold; font-size: 18px;}");
+			out.println("</style>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<div class='center'>Cart is empty</div>");
+			out.println("</body>");
+			out.println("</html>");
+        	 RequestDispatcher rd = request.getRequestDispatcher("cart1");
+             rd.include(request, response); // Replace "cart1 servlet" with your login page URL
+            return;
+        }*/
         
       //  double bill = (double) request.getAttribute("tbill");
          out.print("<!DOCTYPE html>");
@@ -91,6 +134,8 @@ public class Cardpay extends HttpServlet {
         out.print("				<ul class='navbar-nav ml-auto'>");
         out.print("					<li class='nav-item active'><a href='index.html'");
         out.print("						class='nav-link'>Home</a></li>");
+        out.print("<li class='nav-item'><a href='shop.html' class='nav-link'>Shop</a></li>");
+
 		out.print(
 				"                    <li class='nav-item cta cta-colored'><a href='cart1' class='nav-link'><span class='icon-shopping_cart'></span>[0]</a></li>");
         out.print("");
@@ -119,7 +164,7 @@ public class Cardpay extends HttpServlet {
         out.print("  </head>");
         out.print("  <body class='goto-here'>");
         out.print("    <div class='greeting'>"); // Opening div for the greeting message
-        out.print("      <h5>Hello " + email + ",</h5>"); // Display the greeting message with email
+        out.print("      <h5>Cust email :  " + email + "</h5>"); // Display the greeting message with email
         out.print("    </div>");
         // Moved the <h3> tag here to display the greeting message
         out.print("    <style>");
@@ -143,17 +188,17 @@ public class Cardpay extends HttpServlet {
      //   out.print("<h1>Total Bill: " + bill + "</h1>");
       
         out.print("          <div class='form-group'>");
-        out.print("           Card holder Name: <input type='text' class='form-control' name='cname' placeholder='Card holder name' required>");
+        out.print("           Card holder Name: <input type='text' class='form-control' name='cname' placeholder='Card holder name'  required>");
         out.print("          </div>");
        
         out.print("          <div class='form-group'>");
-        out.print("            Card Number: <input type='number' class='form-control' name='num' placeholder='Card number' required>");
+        out.print("            Card Number: <input type='number' class='form-control' name='num' placeholder='Card number' maxlength='12' pattern='[0-9]{12}'  required>");
         out.print("          </div>");
         out.print("          <div class='form-group'>");
         out.print("            Expiry Date: <input type='date' class='form-control' name='date' placeholder='Expiry date' required>");
         out.print("          </div>");
         out.print("          <div class='form-group'>");
-        out.print("           CVV: <input type='number' class='form-control' name='cvv' placeholder='cvv' required>");
+        out.print("           CVV: <input type='number' class='form-control' name='cvv' placeholder='cvv' maxlength='3' pattern='[0-9]{3}' required>");
         out.print("          </div>");
         out.print("");
      

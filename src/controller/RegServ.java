@@ -42,24 +42,24 @@ public class RegServ extends HttpServlet {
 //					 
 					 HttpSession session = request.getSession(true);
 					 session.setAttribute("email", email);
-					
 					 out.println("<html>");
-					out.println("<head>");
-					out.println("<style>");
-					out.println(".center {");
-					out.println("    text-align: center;");
-					out.println("    color: red;");
-					out.println("    position: absolute;");
-					out.println("    top: 20%;");
-					out.println("    left: 50%;");
-					out.println("    transform: translate(-50%, -50%);");
-					out.println("font-weight: bold; font-size: 18px;}");
-					out.println("</style>");
-					out.println("</head>");
-					out.println("<body>");
-					out.println("<div class='center'>Successfully Registered..!</div>");
-					out.println("</body>");
-					out.println("</html>");
+				        out.println("<head>");
+				        out.println("<style>");
+				        out.println(".center {");
+				        out.println("    text-align: center;");
+				        out.println("    color: red;");
+				        out.println("    position: absolute;");
+				        out.println("    top: 7%;");
+				        out.println("    left: 50%;");
+				        out.println("    transform: translate(-50%, -50%);");
+				        out.println("    font-weight: bold; font-size: 18px;");
+				        out.println("}");
+				        out.println("</style>");
+				        out.println("</head>");
+				        out.println("<body>");
+				        out.println("<div class='center'>Successfully Registered</div>");
+				        out.println("</body>");
+				        out.println("</html>");
 
 					RequestDispatcher rd = request.getRequestDispatcher("login.html");
 					rd.include(request, response);
@@ -70,20 +70,21 @@ public class RegServ extends HttpServlet {
 				}
 			} else {
 				out.println("<html>");
-				out.println("<head>");
-				out.println("<style>");
-				out.println(".center {");
-				out.println("    text-align: center;");
-				out.println("    color: red;");
-				out.println("    position: absolute;");
-				out.println("    top: 20%;");
-				out.println("    left: 50%;");
-				out.println("    transform: translate(-50%, -50%);");
-				out.println("font-weight: bold; font-size: 18px;}");
-				out.println("</style>");
-				out.println("</head>");
-				out.println("<body>");
-				out.println("<div class='center'> Not Registered..</div>");
+		        out.println("<head>");
+		        out.println("<style>");
+		        out.println(".center {");
+		        out.println("    text-align: center;");
+		        out.println("    color: red;");
+		        out.println("    position: absolute;");
+		        out.println("    top: 7%;");
+		        out.println("    left: 50%;");
+		        out.println("    transform: translate(-50%, -50%);");
+		        out.println("    font-weight: bold; font-size: 18px;");
+		        out.println("}");
+		        out.println("</style>");
+		        out.println("</head>");
+		        out.println("<body>");
+				out.println("<div class='center'> User not Registered or password not matched..</div>");
 				out.println("</body>");
 				out.println("</html>");
 

@@ -20,6 +20,11 @@ public class PaymentServlet extends HttpServlet {
         String expiryDate = request.getParameter("expiryDate");
         String cvv = request.getParameter("cvv");
 
+        
+        if (cvv == null || !cvv.matches("\\d{3}")) {
+            // Handle invalid CVV input here, e.g., display an error message
+            return;
+        }
         // Perform payment processing logic here
 
         // Send response
